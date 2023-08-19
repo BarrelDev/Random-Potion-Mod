@@ -2,14 +2,15 @@
 	"schemaVersion": 1,
 	"id": "random_potion",
 	"version": "${version}",
-	"name": "random_potion",
+	"name": "Random Potion",
 	"description": "A challenge mod to apply a random status effect every few seconds",
 	"authors": [
 		"Barrel"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://www.youtube.com/@BarrelYT",
+		"sources": "https://github.com/BarrelDev/Random-Potion-Mod",
+		"issues": "https://github.com/BarrelDev/Random-Potion-Mod/issues"
 	},
 	"license": "GNU-GPLv3",
 	"icon": "assets/random_potion/icon.png",
@@ -17,18 +18,8 @@
 	"entrypoints": {
 		"main": [
 			"barrel.random_potion.RandomPotionMod"
-		],
-		"client": [
-			"barrel.random_potion.RandomPotionModClient"
 		]
 	},
-	"mixins": [
-		"random_potion.mixins.json",
-		{
-			"config": "random_potion.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
 		"fabricloader": ">=0.14.22",
 		"minecraft": "~1.20.1",

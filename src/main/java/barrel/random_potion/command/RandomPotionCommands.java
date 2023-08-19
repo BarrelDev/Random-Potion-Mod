@@ -11,18 +11,22 @@ import net.minecraft.text.Text;
 
 public class RandomPotionCommands {
     public static void registerCommands() {
+        // start_random_potion
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("start_random_potion")
                 .executes(context -> startRandomPotion(context.getSource()))));
 
+        // stop_random_potion
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("stop_random_potion")
                 .executes(context -> stopRandomPotion(context.getSource()))));
 
+        // set_delay [ticks]
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("set_delay")
                 .then(argument("ticks", IntegerArgumentType.integer(0))
                 .executes(context -> setDelay(context.getSource(), IntegerArgumentType.getInteger(context, "ticks"))))));
 
+        // set_difficulty [level]
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("set_difficulty")
-                .then(argument("level", IntegerArgumentType.integer(1))
+                .then(argument("level", IntegerArgumentType.integer(0))
                         .executes(context -> setDifficulty(context.getSource(), IntegerArgumentType.getInteger(context, "level"))))));
 
         RandomPotionMod.LOGGER.info("Registered Commands for " + RandomPotionMod.MOD_ID);

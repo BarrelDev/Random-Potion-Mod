@@ -6,9 +6,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,20 +34,17 @@ public class RandomPotionMod implements ModInitializer {
 
 		RandomPotionCommands.registerCommands();
 
+		// Register Game Loop
 		ServerTickEvents.END_WORLD_TICK.register(world -> {
 			if(isRunning) {
 				List<ServerPlayerEntity> playersList = world.getPlayers();
 				if(currTime <= 1) {
 					currTime = delay;
 					for(ServerPlayerEntity player : playersList) {
-						// player.sendMessage(Text.literal("subtracting " + currTime));
-						player.addStatusEffect(new StatusEffectInstance(getRandomEffect(), delay, (int) (Math.random() * difficulty + 1)));
-						//player.sendMessage(Text.literal("effect sent " + player.getStatusEffects().toString()));
+						player.addStatusEffect(new StatusEffectInstance(getRandomEffect(), delay, (int) (Math.random() * difficulty)));
 					}
 				} else {
 					currTime--;
-					// for(ServerPlayerEntity player : playersList)
-					// 	player.sendMessage(Text.literal("subtracting " + currTime));
 				}
 			}
 		});
