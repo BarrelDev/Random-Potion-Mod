@@ -21,6 +21,10 @@ public class RandomPotionCommands {
                 .then(argument("ticks", IntegerArgumentType.integer(0))
                 .executes(context -> setDelay(context.getSource(), IntegerArgumentType.getInteger(context, "ticks"))))));
 
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("set_difficulty")
+                .then(argument("level", IntegerArgumentType.integer(1))
+                        .executes(context -> setDifficulty(context.getSource(), IntegerArgumentType.getInteger(context, "level"))))));
+
         RandomPotionMod.LOGGER.info("Registered Commands for " + RandomPotionMod.MOD_ID);
     }
 
@@ -45,6 +49,13 @@ public class RandomPotionCommands {
         RandomPotionMod.currTime = ticks;
 
         source.sendMessage(Text.literal("Set Random Potion Delay to " + ticks + " ticks"));
+        return 1;
+    }
+
+    public static int setDifficulty(ServerCommandSource source, int level) {
+        RandomPotionMod.difficulty = level;
+
+        source.sendMessage(Text.literal("Set Random Potion Difficulty to " + level));
         return 1;
     }
 }

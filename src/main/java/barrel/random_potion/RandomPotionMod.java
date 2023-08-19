@@ -4,13 +4,11 @@ import barrel.random_potion.command.RandomPotionCommands;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import org.apache.logging.log4j.core.jmx.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,8 +23,10 @@ public class RandomPotionMod implements ModInitializer {
 	public static final String MOD_ID = "random_potion";
 
 	public static final int DEFAULT_DELAY = 200;
+	public static final int DEFAULT_DIFFICULTY = 2;
 
 	public static int delay = DEFAULT_DELAY;
+	public static int difficulty = DEFAULT_DIFFICULTY;
 	public static boolean isRunning = false;
 	public static int currTime = delay;
 
@@ -42,18 +42,24 @@ public class RandomPotionMod implements ModInitializer {
 				if(currTime <= 1) {
 					currTime = delay;
 					for(ServerPlayerEntity player : playersList) {
-						player.sendMessage(Text.literal("subtracting " + currTime));
-						player.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, delay));
-						player.sendMessage(Text.literal("effect sent"));
+						// player.sendMessage(Text.literal("subtracting " + currTime));
+						player.addStatusEffect(new StatusEffectInstance(getRandomEffect(), delay, (int) (Math.random() * difficulty + 1)));
+						//player.sendMessage(Text.literal("effect sent " + player.getStatusEffects().toString()));
 					}
 				} else {
 					currTime--;
-					for(ServerPlayerEntity player : playersList)
-						player.sendMessage(Text.literal("subtracting " + currTime));
+					// for(ServerPlayerEntity player : playersList)
+					// 	player.sendMessage(Text.literal("subtracting " + currTime));
 				}
 			}
 		});
 
 		LOGGER.info("Initialized " + MOD_ID + " in " + (start - System.currentTimeMillis()) + " milliseconds!");
+	}
+
+	public static StatusEffect getRandomEffect() {
+		int randomId = Math.max(1, (int) (Math.random() * 34));
+
+		return StatusEffect.byRawId(randomId);
 	}
 }
