@@ -3,23 +3,23 @@
 	"id": "random_potion",
 	"version": "${version}",
 	"name": "random_potion",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A challenge mod to apply a random status effect every few seconds",
 	"authors": [
-		"Me!"
+		"Barrel"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "GNU-GPLv3",
 	"icon": "assets/random_potion/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"barrel.random_potion.ExampleMod"
+			"barrel.random_potion.RandomPotionMod"
 		],
 		"client": [
-			"barrel.random_potion.ExampleModClient"
+			"barrel.random_potion.RandomPotionModClient"
 		]
 	},
 	"mixins": [
