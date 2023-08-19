@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "barrel.random_potion.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"ExampleMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
