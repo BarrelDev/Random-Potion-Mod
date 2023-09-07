@@ -21,9 +21,13 @@ public class RandomPotionMod implements ModInitializer {
 	public static final String MOD_ID = "random_potion";
 
 	public static final int DEFAULT_DELAY = 200;
+
+	public static final int DEFAULT_EFFECT_LENGTH = 30;
+
 	public static final int DEFAULT_DIFFICULTY = 2;
 
 	public static int delay = DEFAULT_DELAY;
+	public static int effect_length = DEFAULT_EFFECT_LENGTH;
 	public static int difficulty = DEFAULT_DIFFICULTY;
 	public static boolean isRunning = false;
 	public static int currTime = delay;
@@ -41,7 +45,7 @@ public class RandomPotionMod implements ModInitializer {
 				if(currTime <= 1) {
 					currTime = delay;
 					for(ServerPlayerEntity player : playersList) {
-						player.addStatusEffect(new StatusEffectInstance(getRandomEffect(), delay, (int) (Math.random() * difficulty)));
+						player.addStatusEffect(new StatusEffectInstance(getRandomEffect(), effect_length * 20, (int) (Math.random() * difficulty)));
 					}
 				} else {
 					currTime--;

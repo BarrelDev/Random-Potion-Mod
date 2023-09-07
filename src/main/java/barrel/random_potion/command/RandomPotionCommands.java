@@ -24,6 +24,11 @@ public class RandomPotionCommands {
                 .then(argument("ticks", IntegerArgumentType.integer(0))
                 .executes(context -> setDelay(context.getSource(), IntegerArgumentType.getInteger(context, "ticks"))))));
 
+        // set_effect_length [seconds]
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("set_effect_length")
+                .then(argument("seconds", IntegerArgumentType.integer(0))
+                        .executes(context -> setEffectLength(context.getSource(), IntegerArgumentType.getInteger(context, "seconds"))))));
+
         // set_difficulty [level]
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("set_difficulty")
                 .then(argument("level", IntegerArgumentType.integer(0))
@@ -53,6 +58,13 @@ public class RandomPotionCommands {
         RandomPotionMod.currTime = ticks;
 
         source.sendMessage(Text.literal("Set Random Potion Delay to " + ticks + " ticks"));
+        return 1;
+    }
+
+    public static int setEffectLength(ServerCommandSource source, int seconds) {
+        RandomPotionMod.effect_length = seconds;
+
+        source.sendMessage(Text.literal("Set Random Potion Effect Length to " + seconds + " seconds"));
         return 1;
     }
 
