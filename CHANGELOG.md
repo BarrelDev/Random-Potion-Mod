@@ -1,3 +1,9 @@
+# v1.1
+- Adds new set_effect_length command
+### Commands
+| Command                     | Description                             |
+|-----------------------------|-----------------------------------------|
+| set_effect_length [seconds] | Sets the length of each applied effect. |
 # v1.0
 - Adds main loop along with 4 commands.
 ### Commands

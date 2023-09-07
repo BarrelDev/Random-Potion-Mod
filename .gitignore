@@ -17,3 +17,11 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+run/saves/New World/level.dat
+*.mca
+*.mca
+*.mca
+*.dat
+*.dat_old
+*.gz
+*.log
