@@ -26,9 +26,12 @@ public class RandomPotionMod implements ModInitializer {
 
 	public static final int DEFAULT_DIFFICULTY = 2;
 
+	public static final boolean DEFAULT_USE_INSTANT_DAMAGE = false;
+
 	public static int delay = DEFAULT_DELAY;
 	public static int effect_length = DEFAULT_EFFECT_LENGTH;
 	public static int difficulty = DEFAULT_DIFFICULTY;
+	public static boolean useInstantDamage = DEFAULT_USE_INSTANT_DAMAGE;
 	public static boolean isRunning = false;
 	public static int currTime = delay;
 
@@ -58,6 +61,9 @@ public class RandomPotionMod implements ModInitializer {
 
 	public static StatusEffect getRandomEffect() {
 		int randomId = Math.max(1, (int) (Math.random() * 34));
+
+		if (!useInstantDamage)
+			while (randomId == 7){ randomId = Math.max(1, (int) (Math.random() * 34)); }
 
 		return StatusEffect.byRawId(randomId);
 	}

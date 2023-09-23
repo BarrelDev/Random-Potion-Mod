@@ -34,6 +34,10 @@ public class RandomPotionCommands {
                 .then(argument("level", IntegerArgumentType.integer(0))
                         .executes(context -> setDifficulty(context.getSource(), IntegerArgumentType.getInteger(context, "level"))))));
 
+        // use_instant_damage
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("use_instant_damage")
+                        .executes(context -> setUseInstantDamage(context.getSource()))));
+
         RandomPotionMod.LOGGER.info("Registered Commands for " + RandomPotionMod.MOD_ID);
     }
 
@@ -72,6 +76,17 @@ public class RandomPotionCommands {
         RandomPotionMod.difficulty = level;
 
         source.sendMessage(Text.literal("Set Random Potion Difficulty to " + level));
+        return 1;
+    }
+
+    public static int setUseInstantDamage(ServerCommandSource source) {
+        boolean use = !RandomPotionMod.useInstantDamage;
+        RandomPotionMod.useInstantDamage = use;
+
+        if(use)
+            source.sendMessage(Text.literal("Enabled Instant Damage Effect"));
+        else
+            source.sendMessage(Text.literal("Disabled Instant Damage Effect"));
         return 1;
     }
 }

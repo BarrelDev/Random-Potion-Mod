@@ -1,3 +1,10 @@
+# v1.1.1
+- Adds new use_instant_damage command
+- Disables Instant Damage Effect by default
+### Commands
+| Command            | Description                                                  |
+|--------------------|--------------------------------------------------------------|
+| use_instant_damage | Enables/Disables Instant Damage effect in Random Potion Loop |
 # v1.1
 - Adds new set_effect_length command
 ### Commands
